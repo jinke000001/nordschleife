@@ -17,11 +17,25 @@ export default function ModelDetailPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isCurrent = true;
     setLoading(true);
-    getModelByBrandAndSlug(brandSlug, modelSlug).then((m) => {
-      setModel(m);
-      setLoading(false);
-    });
+    getModelByBrandAndSlug(brandSlug, modelSlug)
+      .then((m) => {
+        if (!isCurrent) return;
+        setModel(m);
+      })
+      .catch(() => {
+        if (!isCurrent) return;
+        setModel(null);
+      })
+      .finally(() => {
+        if (!isCurrent) return;
+        setLoading(false);
+      });
+
+    return () => {
+      isCurrent = false;
+    };
   }, [brandSlug, modelSlug]);
 
   useDocumentTitle(model ? `${model.name} - 车型档案` : '车型档案');

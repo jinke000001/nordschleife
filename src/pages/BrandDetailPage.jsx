@@ -1,5 +1,6 @@
 import { Link, Navigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Car, Gauge, TimerReset } from 'lucide-react';
+import InfoBlock from '../components/InfoBlock.jsx';
 import { getAdjacentBrands, getBrandBySlug } from '../data/brands.js';
 import useScrollReveal from '../hooks/useScrollReveal.js';
 import useDocumentTitle from '../hooks/useDocumentTitle.js';
@@ -58,19 +59,15 @@ export default function BrandDetailPage() {
               ))}
             </div>
           </div>
-          {brand.logoBasename && (() => {
-            const darkLogos = new Set(['amg', 'lexus', 'volkswagen']);
-            const logoDir = darkLogos.has(brand.logoBasename) ? 'logos' : 'logos/color';
-            return (
-              <figure className="brand-hero-visual">
-                <img
-                  className="brand-hero-logo"
-                  src={`/${logoDir}/${brand.logoBasename}.svg`}
-                  alt={brand.name}
-                />
-              </figure>
-            );
-          })()}
+          {brand.logoBasename && (
+            <figure className="brand-hero-visual">
+              <img
+                className="brand-hero-logo"
+                src={`/logos/${brand.logoBasename}.svg`}
+                alt={brand.name}
+              />
+            </figure>
+          )}
         </div>
       </header>
 
@@ -78,7 +75,7 @@ export default function BrandDetailPage() {
         <section className="detail-main">
           <ModelStoryGrid stories={brand.modelStories} brandSlug={brand.slug} />
           {detailBlocks.map((block) => (
-            <InfoBlock key={block.title} title={block.title} content={block.content} />
+            <InfoBlock key={block.title} title={block.title} content={block.content} variant="reveal-on-scroll" />
           ))}
         </section>
 
@@ -173,15 +170,6 @@ function ModelStoryGrid({ stories, brandSlug }) {
           );
         })}
       </div>
-    </section>
-  );
-}
-
-function InfoBlock({ title, content }) {
-  return (
-    <section className="info-block reveal-on-scroll">
-      <h2>{title}</h2>
-      <p>{content}</p>
     </section>
   );
 }

@@ -17,10 +17,11 @@ export default function TopLoadingBar() {
 
     const timer1 = setTimeout(() => setProgress(60), 200);
     const timer2 = setTimeout(() => setProgress(85), 500);
+    let hideTimer;
 
     const completeTimer = setTimeout(() => {
       setProgress(100);
-      setTimeout(() => {
+      hideTimer = setTimeout(() => {
         setVisible(false);
         setProgress(0);
       }, 400);
@@ -30,6 +31,7 @@ export default function TopLoadingBar() {
       clearTimeout(timer1);
       clearTimeout(timer2);
       clearTimeout(completeTimer);
+      clearTimeout(hideTimer);
     };
   }, [location.pathname]);
 

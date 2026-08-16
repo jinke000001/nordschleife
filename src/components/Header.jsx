@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Gauge, Menu, X } from 'lucide-react';
 import useMagnetic from '../hooks/useMagnetic.js';
@@ -22,6 +22,7 @@ function MagneticNavLink({ to, label }) {
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const closeButtonRef = useRef(null);
 
   // Close drawer on route change
   useEffect(() => {
@@ -38,6 +39,21 @@ export default function Header() {
     return () => {
       document.body.style.overflow = '';
     };
+  }, [isOpen]);
+
+  // Move focus into the drawer when it opens and support Escape to close.
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    closeButtonRef.current?.focus();
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
   }, [isOpen]);
 
   return (
@@ -59,11 +75,12 @@ export default function Header() {
       </nav>
 
       <div className="mobile-nav-container">
-        <button 
-          className="mobile-nav-trigger" 
-          aria-label="打开导航" 
-          onClick={() => setIsOpen(true)}
-        >
+        <button
+            className="mobile-nav-trigger"
+            aria-label={isOpen ? '关闭导航' : '打开导航'}
+            aria-expanded={isOpen}
+            onClick={() => setIsOpen(true)}
+          >
           <Menu size={22} />
         </button>
 
@@ -71,12 +88,17 @@ export default function Header() {
           <div className="mobile-nav-backdrop" onClick={() => setIsOpen(false)} aria-hidden="true" />
         )}
         
-        <nav className={`mobile-nav-drawer ${isOpen ? 'is-open' : ''}`} aria-label="移动端主导航">
+        <nav
+            className={`mobile-nav-drawer ${isOpen ? 'is-open' : ''}`}
+            aria-label="移动端主导航"
+            aria-hidden={isOpen ? undefined : 'true'}
+            inert={isOpen ? undefined : true}
+          >
           <div className="mobile-nav-drawer-header">
             <span className="brand-icon">
               <Gauge size={20} />
             </span>
-            <button aria-label="关闭导航" onClick={() => setIsOpen(false)}>
+            <button ref={closeButtonRef} aria-label="关闭导航" onClick={() => setIsOpen(false)}>
               <X size={24} />
             </button>
           </div>

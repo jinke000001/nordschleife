@@ -19,7 +19,7 @@
 
 - Vite
 - React
-- React Router HashRouter
+- React Router BrowserRouter（Netlify / Vercel 均配置 SPA fallback）
 - CSS 单文件全局样式：`src/styles.css`
 - 静态数据驱动页面
 
@@ -38,17 +38,13 @@
 /brands/:brandSlug/:modelSlug  车型详情
 ```
 
-由于使用 HashRouter，本地直接访问时应使用：
-
-```text
-http://127.0.0.1:5173/#/brands/porsche/911-gt3-rs
-```
-
-而不是：
+由于使用 BrowserRouter，本地直接访问子路由时应使用：
 
 ```text
 http://127.0.0.1:5173/brands/porsche/911-gt3-rs
 ```
+
+开发服务器自带 fallback；线上由 Netlify / Vercel 的 rewrite 规则负责，子路由可以刷新和分享。
 
 ## 关键目录
 

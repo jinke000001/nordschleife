@@ -8,7 +8,7 @@ export default function BrandsPage() {
   useDocumentTitle('品牌故事');
   return (
     <section className="page-section brand-page">
-      <SectionHeader eyebrow="Brand Stories" title="纽北品牌陈列馆">
+      <SectionHeader eyebrow="Brand Stories" title="纽北品牌陈列馆" titleTag="h1">
         这里不做单纯的圈速榜。每个品牌都会被放回工程路线、代表车型、赛事表现和车迷记忆里，看它为什么要来北环证明自己。
       </SectionHeader>
 

@@ -6,9 +6,9 @@ export default {
   "heroImageBasename": "huracan-sto",
   "heroCredit": "Lamborghini Huracán STO · Wikimedia Commons",
   "heroSourceHref": "https://commons.wikimedia.org/wiki/File:Lamborghini_Huracan_STO.jpg",
-  "heroModel": "Huracan Performante / Aventador SVJ / Huracan STO / Essenza SCV12",
+  "heroModel": "Huracan Performante / Aventador SVJ / Huracan STO / Huracan GT3 EVO2",
   "focus": "Lamborghini 进入北环时总带着舞台灯光：V10、V12、楔形姿态和主动空气动力都很张扬。但真正有趣的是，这些戏剧性必须在 20 公里山路上兑现成真实速度——Huracan Performante 的 6:52.01 和 Aventador SVJ 的 6:44.97，就是这份承诺的两张收据。",
-  "story": "当一台兰博基尼进入北环，观众往往先听见它，再看见它。它的故事适合从超跑如何把视觉冲击转化为真实速度切入：ALA 主动空气动力不是装饰，V12 不只属于海报，轻量化 STO 和赛道专属 Essenza SCV12 则把这条路推向更极端的位置。",
+  "story": "当一台兰博基尼进入北环，观众往往先听见它，再看见它。它的故事适合从超跑如何把视觉冲击转化为真实速度切入：ALA 主动空气动力不是装饰，V12 不只属于海报，轻量化 STO 和 GT3 赛车 Huracan GT3 EVO2 则把这条路推向更极端的位置。",
   "keywords": [
     "超跑",
     "主动空力",
@@ -18,8 +18,8 @@ export default {
   "exhibit": "适合做成高张力车型故事，不需要只追逐榜单。",
   "relationship": "Lamborghini 进入北环时，带来的不只是成绩，还有一种戏剧性的存在感。它的车总是先用声浪、姿态和比例抓住人，但北环会立刻追问：这些视觉冲击能不能在长弯、压缩和高速路段里变成真正的稳定速度。Performante 和 SVJ 的圈速回答了这个问题——能。",
   "technology": "主动空气动力（ALA）、自然吸气发动机、四驱系统分配和超高性能轮胎的负载管理，是理解 Lamborghini 北环表现的几个入口。Huracan Performante 的 ALA 系统可以在弯中主动调整下压力分配，SVJ 的 ALA 2.0 进一步优化了效率和响应速度——这些技术让一台本来很张扬的车在赛道上变得精密。",
-  "lapStory": "Lamborghini 的北环故事适合围绕 Huracan Performante（6:52.01，首台应用 ALA 主动空力）、Aventador SVJ（6:44.97，一度保持量产车圈速纪录）、Huracan STO（更纯粹的赛道化表达）和 Essenza SCV12（彻底脱离公路法规的赛道专属机器）展开：看一台高度戏剧化的车，如何把观感、声浪和真实速度绑在一起。",
-  "archiveNote": "先看 Huracan Performante 如何用 ALA 主动空力把戏剧性兑现成速度，再看 SVJ 如何把 V12 旗舰推向更极致，随后用 STO 与 Essenza SCV12 补上赛道化与非公路化的两条延伸线。",
+  "lapStory": "Lamborghini 的北环故事适合围绕 Huracan Performante（6:52.01，首台应用 ALA 主动空力）、Aventador SVJ（6:44.97，一度保持量产车圈速纪录）、Huracan STO（更纯粹的赛道化表达）和 Huracan GT3 EVO2（真正进入 N24 与全球耐力赛的 GT3 赛车）展开：看一台高度戏剧化的车，如何把观感、声浪和真实速度绑在一起。",
+  "archiveNote": "先看 Huracan Performante 如何用 ALA 主动空力把戏剧性兑现成速度，再看 SVJ 如何把 V12 旗舰推向更极致，随后用 STO 与 GT3 EVO2 补上赛道化与赛事化的两条延伸线。",
   "detailBlocks": [
     {
       "title": "品牌与纽北的关系",
@@ -35,7 +35,7 @@ export default {
     },
     {
       "title": "北环叙事线索",
-      "content": "看 Lamborghini，可以从 Huracan Performante 的主动空气动力进入，理解 ALA 如何让一台 V10 超跑在赛道上变得精密；再看 Aventador SVJ 如何把 V12 旗舰推向更极端的位置，用 6:44.97 证明大排量自然吸气仍然有统治力；随后用 Huracan STO 和 Essenza SCV12 补上赛道化与非公路化的两条延伸线，看一台 Lamborghini 还能多极端。"
+      "content": "看 Lamborghini，可以从 Huracan Performante 的主动空气动力进入，理解 ALA 如何让一台 V10 超跑在赛道上变得精密；再看 Aventador SVJ 如何把 V12 旗舰推向更极端的位置，用 6:44.97 证明大排量自然吸气仍然有统治力；随后用 Huracan STO 和 Huracan GT3 EVO2 补上赛道化与赛事化的两条延伸线，看一台 Lamborghini 还能多极端。"
     }
   ],
   "modelStories": [

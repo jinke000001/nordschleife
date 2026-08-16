@@ -20,10 +20,10 @@ export default function NotFoundPage() {
         </p>
 
         <div className="nf-actions">
-          <Link to="/" className="btn btn-primary">
+          <Link to="/" className="primary-button">
             <ArrowLeft size={18} /> 返回首页
           </Link>
-          <button onClick={() => window.history.back()} className="btn btn-secondary">
+          <button onClick={() => window.history.back()} className="ghost-button" type="button">
             <RotateCcw size={18} /> 尝试返回上一页
           </button>
         </div>

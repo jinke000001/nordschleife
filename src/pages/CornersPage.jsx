@@ -37,7 +37,7 @@ export default function CornersPage() {
 
   return (
     <section className="page-section">
-      <SectionHeader eyebrow="Corner Index" title="按赛道顺序认识北环弯角">
+      <SectionHeader eyebrow="Corner Index" title="按赛道顺序认识北环弯角" titleTag="h1">
         每张卡片都保留德语原名，并用中文解释它的名字、故事和驾驶性格。你可以搜索 Karussell、旋转木马、高速弯、盲弯、跳跃、压缩路段等关键词。
       </SectionHeader>
 

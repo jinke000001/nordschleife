@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Zap, Flame, GitMerge, Search, Timer, X } from 'lucide-react';
 import { lapTimes, POWERTRAIN_TABS, getSortedTimes } from '../data/lap-times.js';
 import useScrollReveal from '../hooks/useScrollReveal.js';
@@ -193,9 +193,9 @@ export default function LapTimesPage() {
                       {entry.category === 'prototype' && <span className="lt-badge lt-badge-proto">原型</span>}
                     </div>
                     {entry.modelLink ? (
-                      <a href={`#/brands/${entry.modelLink.brand}/${entry.modelLink.model}`} className="lt-model-link">
+                      <Link to={`/brands/${entry.modelLink.brand}/${entry.modelLink.model}`} className="lt-model-link">
                         <strong className="lt-model">{entry.name}</strong>
-                      </a>
+                      </Link>
                     ) : (
                       <strong className="lt-model">{entry.name}</strong>
                     )}

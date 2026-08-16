@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Camera, Gauge, MapPin, Play, ShieldAlert } from 'lucide-react';
+import InfoBlock from '../components/InfoBlock.jsx';
 import TrackMap from '../components/TrackMap.jsx';
 import OptimizedImage from '../components/OptimizedImage.jsx';
 import { getAdjacentCorners, getCornerBySlug } from '../data/corners.js';
@@ -11,12 +12,12 @@ export default function CornerDetailPage() {
   const { slug } = useParams();
   const corner = getCornerBySlug(slug);
   useDocumentTitle(corner ? `${corner.name} - 弯角详情` : '弯角详情');
-  const isEnhanced = corner.storySections && corner.storySections.length > 0;
 
   if (!corner) {
     return <Navigate to="/corners" replace />;
   }
 
+  const isEnhanced = corner.storySections && corner.storySections.length > 0;
   const { previous, next } = getAdjacentCorners(slug);
 
   return (
@@ -235,15 +236,6 @@ function MediaBay({ corner }) {
           media.credit
         )}
       </p>
-    </section>
-  );
-}
-
-function InfoBlock({ title, content }) {
-  return (
-    <section className="info-block">
-      <h2>{title}</h2>
-      <p>{content}</p>
     </section>
   );
 }

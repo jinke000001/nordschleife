@@ -16,7 +16,7 @@
 - project-workbench/next-steps.md
 - CONTENT_GUIDE.md
 
-项目是 Vite + React 静态站，没有后端。使用 HashRouter。
+项目是 Vite + React 静态站，没有后端。使用 BrowserRouter，Netlify / Vercel 均已配置 SPA fallback。
 
 核心风格：
 - 中文汽车杂志感

@@ -17,21 +17,16 @@ npm run dev
 http://localhost:5173/
 ```
 
-## 直接打开文件
+## 构建后本地预览
 
-不要直接打开项目根目录或根目录下的 `index.html`。如果想用 `file://` 打开，请先构建：
+不要直接打开项目根目录或根目录下的 `index.html`，也不要直接用 `file://` 打开构建产物。项目使用 BrowserRouter 和绝对资源路径，请构建后启动本地预览：
 
 ```bash
 npm run build
+npm run preview
 ```
 
-然后打开：
-
-```text
-dist/index.html
-```
-
-项目使用 HashRouter 和相对资源路径，因此构建后的 `dist/index.html` 可以直接从文件系统打开。
+然后打开 `http://localhost:4173/`（实际端口以终端输出为准）。线上部署时，Netlify 与 Vercel 都配置了 SPA fallback，因此子路由可以直接访问和刷新。
 
 ## 主要文件
 

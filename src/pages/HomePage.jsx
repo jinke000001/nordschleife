@@ -1,74 +1,137 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Flag, Route, TimerReset } from 'lucide-react';
 import CornerCard from '../components/CornerCard.jsx';
 import SectionHeader from '../components/SectionHeader.jsx';
 import TrackMap from '../components/TrackMap.jsx';
-import OptimizedImage from '../components/OptimizedImage.jsx';
-import karussellHero from '../assets/karussell-wikimedia-1800.jpg';
+import trackOutline from '../assets/nordschleife-map.svg';
 import { brands } from '../data/brands.js';
-import { corners, featuredCornerSlugs } from '../data/corners.js';
+import { beginnerRouteSlugs, corners, featuredCornerSlugs, getCornerBySlug } from '../data/corners.js';
+import { lapTimes } from '../data/lap-times.js';
 import useScrollReveal from '../hooks/useScrollReveal.js';
-import useParallax from '../hooks/useParallax.js';
 import useTilt3D from '../hooks/useTilt3D.js';
 import useDocumentTitle from '../hooks/useDocumentTitle.js';
 
 const featuredCorners = featuredCornerSlugs.map((slug) => corners.find((corner) => corner.slug === slug));
+const beginnerRoute = beginnerRouteSlugs
+  .slice(0, 4)
+  .map((slug) => getCornerBySlug(slug))
+  .filter(Boolean);
+const recordHeadline =
+  lapTimes.find((entry) => entry.category === 'prototype' && entry.isRecord) ??
+  lapTimes[0];
 
 export default function HomePage() {
   useDocumentTitle('首页');
   useScrollReveal();
-  const heroBgRef = useParallax(0.18);
   useTilt3D('.brand-badge', 5);
   useTilt3D('.corner-card', 5);
+  useTilt3D('.pathway-card', 4);
   const scrollToMap = () => {
     document.getElementById('home-track-map')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
     <>
-      <section className="hero">
-        <img ref={heroBgRef} className="hero-bg-image parallax-img" src={karussellHero} alt="纽博格林北环 Karussell 弯角" />
+      <section className="home-hero">
+        <div className="home-hero-map-visual" aria-hidden="true">
+          <img src={trackOutline} alt="" />
+        </div>
 
-        <div className="hero-copy">
-          <h1>走进绿色地狱</h1>
-          <p>
-            70 多个弯角，从 Flugplatz 的起飞到 Döttinger Höhe 的全油门——每个都有自己的名字、
-            地形和故事。这里整理了弯角的来历、驾驶要点与赛道记忆。
-          </p>
-          <div className="hero-actions">
-            <Link className="primary-button" to="/corners">
-              探索弯角 <ArrowRight size={18} />
-            </Link>
-            <button className="ghost-button" type="button" onClick={scrollToMap}>
-              查看赛道地图
+        <div className="home-hero-content">
+          <p className="home-hero-label">纽博格林北环中文指南</p>
+          <h1>绿色地狱</h1>
+          <p className="home-hero-subtitle">Nürburgring Nordschleife</p>
+          <div className="home-hero-actions">
+            <button className="primary-button" type="button" onClick={scrollToMap}>
+              进入赛道地图 <ArrowRight size={18} />
             </button>
+            <Link className="ghost-button" to="/corners">
+              查看弯角档案
+            </Link>
           </div>
         </div>
 
-        <span className="hero-location">50.3359°N · 6.9470°E · Eifel, DE</span>
-        <p className="hero-photo-credit">Karussell · Wikimedia Commons · CC0</p>
+        <div className="home-hero-factbar" aria-label="赛道关键数据">
+          <article className="home-hero-fact">
+            <strong>20.832</strong>
+            <span>km 赛道长度</span>
+          </article>
+          <article className="home-hero-fact">
+            <strong>73</strong>
+            <span>已命名弯角</span>
+          </article>
+          <article className="home-hero-fact">
+            <strong>300</strong>
+            <span>m 海拔落差</span>
+          </article>
+          <Link className="home-hero-fact-link" to="/lap-times">
+            圈速档案 <ArrowRight size={16} />
+          </Link>
+        </div>
       </section>
 
-      <div className="atmosphere-banner reveal-on-scroll">
-        <OptimizedImage basename="atmosphere-forest" alt="" loading="lazy" decoding="async" />
-        <div className="atmosphere-banner-overlay" />
-      </div>
+      <section className="home-pathways page-section reveal-on-scroll">
+        <SectionHeader eyebrow="Entry" title="先从这三处进入">
+          地图负责空间顺序，弯角负责地形细节，圈速负责车型对比。
+        </SectionHeader>
+
+        <div className="home-pathway-grid">
+          <button className="pathway-card" type="button" onClick={scrollToMap}>
+            <div className="pathway-card-kicker">
+              <Route size={18} />
+              <span>01 · TRACK MAP</span>
+            </div>
+            <h3>先看整圈地图</h3>
+            <p>建立从起点到长直道的基本顺序。</p>
+            <div className="pathway-card-meta">
+              <span>整圈空间感</span>
+              <span>真实布局</span>
+            </div>
+          </button>
+
+          <Link className="pathway-card" to="/corners">
+            <div className="pathway-card-kicker">
+              <Flag size={18} />
+              <span>02 · CORNERS</span>
+            </div>
+            <h3>从经典弯角开始</h3>
+            <p>用代表弯角理解坡度、压缩和路面变化。</p>
+            <div className="pathway-card-chip-row">
+              {beginnerRoute.map((corner) => (
+                <span key={corner.slug}>{corner.name}</span>
+              ))}
+            </div>
+          </Link>
+
+          <Link className="pathway-card" to="/lap-times">
+            <div className="pathway-card-kicker">
+              <TimerReset size={18} />
+              <span>03 · RECORDS</span>
+            </div>
+            <h3>从圈速理解极限</h3>
+            <p>看不同车型在同一条赛道上的速度差异。</p>
+            <div className="pathway-card-record">
+              <strong>{recordHeadline.time}</strong>
+              <span>{recordHeadline.name}</span>
+            </div>
+          </Link>
+        </div>
+      </section>
 
       <section className="map-exhibit reveal-on-scroll" id="home-track-map">
         <div className="map-exhibit-copy">
           <p className="eyebrow">Track Map</p>
-          <h2>先看清这条"森林长卷"的真实形状</h2>
+          <h2>先看清这条赛道，再决定从哪里读进去</h2>
           <p>
-            赛道图不是装饰，而是进入北环的第一张索引。红色进度沿赛道巡游，弯名按钮连接到对应故事页：
-            从 Flugplatz 的车身变轻，到 Karussell 的水泥槽，再到 Döttinger Höhe 的全油门长直道。
+            先用地图建立整圈顺序，再进入弯角页查看每个路段的位置、中文说明和关联记录。
           </p>
         </div>
         <TrackMap />
       </section>
 
       <section className="page-section reveal-on-scroll">
-        <SectionHeader eyebrow="Corner Gallery" title="先认识这些著名弯角">
-          从飞行场到长直道，这些名字构成了许多人认识北环的路线图。
+        <SectionHeader eyebrow="Corner Gallery" title="这些名字，构成了很多人认识纽北的第一条路线">
+          从坡顶、高速弯、压缩路段到内倾混凝土槽，北环的性格不是抽象的，它藏在一连串具体名字里。
         </SectionHeader>
         <div className="card-grid featured-grid">
           {featuredCorners.map((corner) => (
@@ -77,25 +140,16 @@ export default function HomePage() {
         </div>
       </section>
 
-      <div className="atmosphere-banner reveal-on-scroll">
-        <OptimizedImage basename="atmosphere-dusk" alt="" loading="lazy" decoding="async" />
-        <div className="atmosphere-banner-overlay" />
-      </div>
-
       <section className="page-section reveal-on-scroll">
-        <SectionHeader eyebrow="弯角之外" title="品牌登场">
-          弯角记住了速度，品牌记住了性格。从耐力赛工程到日常性能，从超跑戏剧到玩家记忆。
+        <SectionHeader eyebrow="Machines & Makers" title="弯角之外，还有把纽北写进产品里的品牌">
+          赛道留下名字，品牌留下机器。有人来这里做工程验证，有人来这里写营销神话，也有人只是想证明一台车的性格足够硬。
         </SectionHeader>
         <div className="brand-badge-grid">
-          {brands.map((brand) => {
-            const darkLogos = new Set(['amg', 'lexus', 'volkswagen']);
-            const logoDir = darkLogos.has(brand.logoBasename) ? 'logos' : 'logos/color';
-            return (
-              <Link className="brand-badge" to={`/brands/${brand.slug}`} key={brand.slug} aria-label={brand.name}>
-                <img className="brand-badge-logo" src={`/${logoDir}/${brand.logoBasename}.svg`} alt={brand.name} />
-              </Link>
-            );
-          })}
+          {brands.map((brand) => (
+            <Link className="brand-badge" to={`/brands/${brand.slug}`} key={brand.slug} aria-label={brand.name}>
+              <img className="brand-badge-logo" src={`/logos/${brand.logoBasename}.svg`} alt={brand.name} />
+            </Link>
+          ))}
         </div>
         <Link className="primary-button brand-cta" to="/brands">
           查看全部品牌 <ArrowRight size={18} />

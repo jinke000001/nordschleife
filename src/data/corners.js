@@ -230,8 +230,8 @@ export const corners = cornerRecords.map((corner) => {
 
 export const featuredCornerSlugs = [
   'flugplatz',
-  'adenauer-forst',
   'fuchsroehre',
+  'adenauer-forst',
   'bergwerk',
   'karussell',
   'brunnchen',
@@ -242,8 +242,8 @@ export const featuredCornerSlugs = [
 
 export const beginnerRouteSlugs = [
   'flugplatz',
-  'adenauer-forst',
   'fuchsroehre',
+  'adenauer-forst',
   'karussell',
   'pflanzgarten',
   'doettinger-hoehe'

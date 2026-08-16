@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCornerBySlug } from '../data/corners.js';
 
@@ -64,9 +64,12 @@ function getActiveIndex(slug) {
 export default function TrackMap({ compact = false, activeSlug = null }) {
   const navigate = useNavigate();
   const pathId = `nord-flow-${useId().replace(/:/g, '')}`;
+  const mapRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(() => getActiveIndex(activeSlug));
   const [mapLanguage, setMapLanguage] = useState('zh');
   const [isAutoPaused, setIsAutoPaused] = useState(false);
+  const [isMapVisible, setIsMapVisible] = useState(true);
+  const [isPageVisible, setIsPageVisible] = useState(() => !document.hidden);
   const activeCorner = trackLabels[activeIndex] ?? trackLabels[0];
   const normalizedProgress = activeCorner.ed;
   const segmentLength = Math.max(0.004, activeCorner.ed - activeCorner.st);
@@ -79,7 +82,28 @@ export default function TrackMap({ compact = false, activeSlug = null }) {
   }, [activeSlug]);
 
   useEffect(() => {
-    if (compact || activeSlug || isAutoPaused) {
+    const onVisibilityChange = () => setIsPageVisible(!document.hidden);
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', onVisibilityChange);
+  }, []);
+
+  useEffect(() => {
+    const node = mapRef.current;
+    if (!node || !('IntersectionObserver' in window)) {
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsMapVisible(entry.isIntersecting),
+      { root: null, rootMargin: '120px 0px', threshold: 0.05 }
+    );
+    observer.observe(node);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (compact || activeSlug || isAutoPaused || !isMapVisible || !isPageVisible) {
       return undefined;
     }
 
@@ -92,7 +116,7 @@ export default function TrackMap({ compact = false, activeSlug = null }) {
     }, 2600);
 
     return () => window.clearInterval(interval);
-  }, [activeSlug, compact, guideLabels, isAutoPaused]);
+  }, [activeSlug, compact, isAutoPaused, isMapVisible, isPageVisible]);
 
   const selectCorner = (index) => {
     setIsAutoPaused(true);
@@ -100,7 +124,7 @@ export default function TrackMap({ compact = false, activeSlug = null }) {
   };
 
   return (
-    <section className={compact ? 'track-map compact' : 'track-map'} aria-label="纽北真实赛道图">
+    <section ref={mapRef} className={compact ? 'track-map compact' : 'track-map'} aria-label="纽北真实赛道图">
       <div className="map-stage">
         <div className="map-grid" aria-hidden="true" />
         <div className="official-map-frame">
