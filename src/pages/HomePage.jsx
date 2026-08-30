@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Flag, Route, TimerReset } from 'lucide-react';
 import CornerCard from '../components/CornerCard.jsx';
@@ -23,6 +24,10 @@ const recordHeadline =
 
 export default function HomePage() {
   useDocumentTitle('首页');
+  // 移除 index.html 里启动期 CLS 占位（首屏 min-height），此时首页内容已渲染，移除不改变布局
+  useEffect(() => {
+    document.documentElement.classList.remove('boot-home');
+  }, []);
   useScrollReveal();
   useTilt3D('.brand-badge', 5);
   useTilt3D('.corner-card', 5);

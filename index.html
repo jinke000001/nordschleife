@@ -33,6 +33,17 @@
       content="https://nordschleife-guide.netlify.app/og-image.jpg"
     />
     <title>走进绿色地狱：纽博格林北环弯角故事</title>
+    <!-- 启动期 CLS 占位：仅首页，首屏绘制时把 footer 推出视口，load 后移除（见 project-workbench/t6-lighthouse-baseline.md） -->
+    <style>
+      html.boot-home main {
+        min-height: 100vh;
+      }
+    </style>
+    <script>
+      if (location.pathname === '/') {
+        document.documentElement.classList.add('boot-home');
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
