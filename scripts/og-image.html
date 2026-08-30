@@ -1,0 +1,64 @@
+<!doctype html>
+<!-- og-image.jpg 生成模板：由 scripts/generate-og-image.mjs 注入赛道 SVG 后截图 -->
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1200px; height: 630px; overflow: hidden; }
+      body {
+        background: #0b0d11;
+        font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", sans-serif;
+        position: relative;
+      }
+      .track {
+        position: absolute;
+        top: -120px;
+        right: -550px;
+        width: 1250px;
+        opacity: 0.45;
+      }
+      .track svg { width: 100%; height: auto; display: block; }
+      .track text { display: none !important; }
+      .track path {
+        fill: none !important;
+        stroke: #e5232e !important;
+        stroke-width: 6 !important;
+        stroke-dasharray: none !important;
+        stroke-opacity: 1 !important;
+      }
+      .content {
+        position: absolute;
+        left: 72px;
+        bottom: 72px;
+      }
+      .bar {
+        width: 56px;
+        height: 6px;
+        background: #e5232e;
+        margin-bottom: 28px;
+      }
+      h1 {
+        color: #f5f5f5;
+        font-size: 72px;
+        font-weight: 700;
+        letter-spacing: 4px;
+        line-height: 1.1;
+      }
+      p {
+        margin-top: 20px;
+        color: #9aa0a8;
+        font-size: 28px;
+        letter-spacing: 2px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="track"><!--TRACK_SVG--></div>
+    <div class="content">
+      <div class="bar"></div>
+      <h1>走进绿色地狱</h1>
+      <p>纽博格林北环 Nordschleife 弯角故事中文指南</p>
+    </div>
+  </body>
+</html>

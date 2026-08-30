@@ -28,6 +28,10 @@ npm run preview
 
 然后打开 `http://localhost:4173/`（实际端口以终端输出为准）。线上部署时，Netlify 与 Vercel 都配置了 SPA fallback，因此子路由可以直接访问和刷新。
 
+## SEO 与分享卡片
+
+`index.html` 内含 Open Graph / Twitter Card / canonical / favicon / theme-color 元信息。og 分享图为 `public/og-image.jpg`，修改文案后运行 `npm run og` 重新生成（依赖 Playwright，模板在 `scripts/og-image.html`）。注意：本站是 SPA，og 标签为全站统一的静态标签，无法按路由区分——社交分享任何子页面都会显示同一张卡片。
+
 ## 主要文件
 
 - `src/data/corners.js`：弯角数据，后续补真实资料主要改这里。
