@@ -1,7 +1,13 @@
 import { useEffect } from 'react';
+import usePrefersReducedMotion from './usePrefersReducedMotion.js';
 
 export default function useScrollReveal() {
+  const prefersReduced = usePrefersReducedMotion();
+
   useEffect(() => {
+
+    // 降级模式下 CSS 已强制 .reveal-on-scroll 可见，跳过所有观察器
+    if (prefersReduced) return undefined;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -44,5 +50,5 @@ export default function useScrollReveal() {
       mutationObserver.disconnect();
       window.removeEventListener('scroll', scrollHandler);
     };
-  }, []);
+  }, [prefersReduced]);
 }

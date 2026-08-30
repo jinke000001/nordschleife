@@ -4877,8 +4877,26 @@ main::before {
   transform: translateY(var(--parallax-y, 0px)) scale(1.15);
 }
 
-/* Respect reduced-motion: disable all parallax */
+/* Respect reduced-motion: disable all animation/transition, keep content visible */
 @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+  /* Scroll-reveal 元素降级后必须保持可见，不能卡在透明态 */
+  .reveal-on-scroll,
+  .reveal-on-scroll .corner-card,
+  .reveal-on-scroll .brand-badge,
+  .reveal-on-scroll .brand-card {
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto;
+  }
   .parallax-img {
     transform: none !important;
     will-change: auto;

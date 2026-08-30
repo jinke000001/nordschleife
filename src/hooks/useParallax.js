@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import usePrefersReducedMotion from './usePrefersReducedMotion.js';
 
 export default function useParallax(speed = 0.3) {
   const ref = useRef(null);
@@ -6,13 +7,11 @@ export default function useParallax(speed = 0.3) {
   const isVisible = useRef(false);
   const elTop = useRef(0);
   const elHeight = useRef(0);
+  const prefersReduced = usePrefersReducedMotion();
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
-
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) return;
+    if (!el || prefersReduced) return undefined;
 
     let viewH = window.innerHeight;
 
@@ -75,7 +74,7 @@ export default function useParallax(speed = 0.3) {
       window.removeEventListener('resize', onResize);
       if (rafId.current) cancelAnimationFrame(rafId.current);
     };
-  }, [speed]);
+  }, [speed, prefersReduced]);
 
   return ref;
 }

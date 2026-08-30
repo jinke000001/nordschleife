@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import usePrefersReducedMotion from './usePrefersReducedMotion.js';
 
 /**
  * useTilt3D
@@ -10,9 +11,10 @@ import { useEffect } from 'react';
  * @param {number} maxDeg    – Max rotation degrees (default 6)
  */
 export default function useTilt3D(selector = '.corner-card, .brand-badge', maxDeg = 6) {
+  const prefersReduced = usePrefersReducedMotion();
+
   useEffect(() => {
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) return;
+    if (prefersReduced) return undefined;
 
     const isTouchOnly = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
     if (isTouchOnly) return;
@@ -96,5 +98,5 @@ export default function useTilt3D(selector = '.corner-card, .brand-badge', maxDe
         el.style.transform = '';
       });
     };
-  }, [selector, maxDeg]);
+  }, [selector, maxDeg, prefersReduced]);
 }

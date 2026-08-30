@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCornerBySlug } from '../data/corners.js';
+import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion.js';
 
 const TRACK_FULL_LENGTH = 1905.97;
 // Path data adapted from JJYing/Nurburgring-Map, MIT License.
@@ -70,6 +71,7 @@ export default function TrackMap({ compact = false, activeSlug = null }) {
   const [isAutoPaused, setIsAutoPaused] = useState(false);
   const [isMapVisible, setIsMapVisible] = useState(true);
   const [isPageVisible, setIsPageVisible] = useState(() => !document.hidden);
+  const prefersReducedMotion = usePrefersReducedMotion();
   const activeCorner = trackLabels[activeIndex] ?? trackLabels[0];
   const normalizedProgress = activeCorner.ed;
   const segmentLength = Math.max(0.004, activeCorner.ed - activeCorner.st);
@@ -103,7 +105,7 @@ export default function TrackMap({ compact = false, activeSlug = null }) {
   }, []);
 
   useEffect(() => {
-    if (compact || activeSlug || isAutoPaused || !isMapVisible || !isPageVisible) {
+    if (compact || activeSlug || isAutoPaused || !isMapVisible || !isPageVisible || prefersReducedMotion) {
       return undefined;
     }
 
@@ -116,7 +118,7 @@ export default function TrackMap({ compact = false, activeSlug = null }) {
     }, 2600);
 
     return () => window.clearInterval(interval);
-  }, [activeSlug, compact, isAutoPaused, isMapVisible, isPageVisible]);
+  }, [activeSlug, compact, isAutoPaused, isMapVisible, isPageVisible, prefersReducedMotion]);
 
   const selectCorner = (index) => {
     setIsAutoPaused(true);
@@ -134,7 +136,9 @@ export default function TrackMap({ compact = false, activeSlug = null }) {
             aria-hidden="true"
             style={{
               '--track-full': TRACK_FULL_LENGTH,
-              '--progress-length': TRACK_FULL_LENGTH * normalizedProgress,
+              '--progress-length': prefersReducedMotion
+                ? TRACK_FULL_LENGTH
+                : TRACK_FULL_LENGTH * normalizedProgress,
               '--segment-length': TRACK_FULL_LENGTH * segmentLength,
               '--segment-offset': -TRACK_FULL_LENGTH * activeCorner.st
             }}

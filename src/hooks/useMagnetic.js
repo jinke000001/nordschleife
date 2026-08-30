@@ -1,4 +1,5 @@
 import { useCallback, useRef, useEffect } from 'react';
+import usePrefersReducedMotion from './usePrefersReducedMotion.js';
 
 /**
  * useMagnetic Hook
@@ -58,8 +59,9 @@ export default function useMagnetic(strength = 0.3, radius = 80) {
     }
   }, []);
 
+  const prefersReduced = usePrefersReducedMotion();
+
   useEffect(() => {
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     if (prefersReduced || !canHover) return undefined;
 
@@ -69,9 +71,12 @@ export default function useMagnetic(strength = 0.3, radius = 80) {
         window.cancelAnimationFrame(frameRef.current);
         frameRef.current = 0;
       }
+      if (ref.current) {
+        ref.current.style.transform = 'translate(0px, 0px)';
+      }
       window.removeEventListener('pointermove', handleMouseMove);
     };
-  }, [handleMouseMove]);
+  }, [handleMouseMove, prefersReduced]);
 
   return {
     ref,
