@@ -5,6 +5,7 @@ import SectionHeader from '../components/SectionHeader.jsx';
 import { corners } from '../data/corners.js';
 import useTilt3D from '../hooks/useTilt3D.js';
 import useDocumentTitle from '../hooks/useDocumentTitle.js';
+import '../styles/pages/corners.css';
 
 function matchesCorner(corner, query) {
   const text = [

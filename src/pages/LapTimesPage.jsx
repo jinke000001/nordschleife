@@ -4,6 +4,7 @@ import { Zap, Flame, GitMerge, Search, Timer, X } from 'lucide-react';
 import { lapTimes, POWERTRAIN_TABS, getSortedTimes } from '../data/lap-times.js';
 import useScrollReveal from '../hooks/useScrollReveal.js';
 import useDocumentTitle from '../hooks/useDocumentTitle.js';
+import '../styles/pages/lap-times.css';
 
 const POWER_ICONS = {
   electric: { icon: Zap,      label: '纯电动', color: 'var(--ev-color)' },

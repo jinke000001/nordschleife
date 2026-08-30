@@ -4,6 +4,7 @@ import InfoBlock from '../components/InfoBlock.jsx';
 import { getAdjacentBrands, getBrandBySlug } from '../data/brands.js';
 import useScrollReveal from '../hooks/useScrollReveal.js';
 import useDocumentTitle from '../hooks/useDocumentTitle.js';
+import '../styles/pages/brand-detail.css';
 
 export default function BrandDetailPage() {
   useScrollReveal();

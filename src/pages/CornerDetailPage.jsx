@@ -6,6 +6,7 @@ import TrackMap from '../components/TrackMap.jsx';
 import OptimizedImage from '../components/OptimizedImage.jsx';
 import { getAdjacentCorners, getCornerBySlug } from '../data/corners.js';
 import useDocumentTitle from '../hooks/useDocumentTitle.js';
+import '../styles/pages/corner-detail.css';
 
 export default function CornerDetailPage() {
   const navigate = useNavigate();

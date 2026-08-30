@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SectionHeader from '../components/SectionHeader.jsx';
 import { brands } from '../data/brands.js';
 import useDocumentTitle from '../hooks/useDocumentTitle.js';
+import '../styles/pages/brands.css';
 
 export default function BrandsPage() {
   useDocumentTitle('品牌故事');

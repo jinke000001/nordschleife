@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ShieldAlert, ArrowLeft, RotateCcw } from 'lucide-react';
 import useDocumentTitle from '../hooks/useDocumentTitle.js';
+import '../styles/pages/not-found.css';
 
 export default function NotFoundPage() {
   useDocumentTitle('404 - 冲出赛道');

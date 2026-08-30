@@ -10,6 +10,7 @@ import { lapTimes } from '../data/lap-times.js';
 import useScrollReveal from '../hooks/useScrollReveal.js';
 import useTilt3D from '../hooks/useTilt3D.js';
 import useDocumentTitle from '../hooks/useDocumentTitle.js';
+import '../styles/pages/home.css';
 
 const featuredCorners = featuredCornerSlugs.map((slug) => corners.find((corner) => corner.slug === slug));
 const beginnerRoute = beginnerRouteSlugs

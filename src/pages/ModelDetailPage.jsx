@@ -7,6 +7,7 @@ import OptimizedImage from '../components/OptimizedImage.jsx';
 import useScrollReveal from '../hooks/useScrollReveal.js';
 import useParallax from '../hooks/useParallax.js';
 import useDocumentTitle from '../hooks/useDocumentTitle.js';
+import '../styles/pages/model-detail.css';
 
 export default function ModelDetailPage() {
   useScrollReveal();
