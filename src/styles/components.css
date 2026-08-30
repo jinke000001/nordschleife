@@ -101,8 +101,8 @@
 .mobile-nav-trigger {
   display: grid;
   place-items: center;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(10, 12, 16, 0.8);
@@ -1161,7 +1161,7 @@
   flex: 0 0 auto;
   align-items: center;
   gap: 6px;
-  height: 34px;
+  height: 44px;
   padding: 0 12px;
   border: 1px solid rgba(255, 255, 255, 0.13);
   border-radius: 999px;
@@ -2420,6 +2420,25 @@
 
   .detail-aside {
     position: static;
+  }
+
+  /* 触控目标 ≥ 44px（WCAG 2.5.8 / Apple HIG） */
+  .map-language-toggle button {
+    min-width: 44px;
+    height: 44px;
+  }
+
+  .corner-card h3 a,
+  .corner-card .text-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .site-footer a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
   }
 
   .model-timeline {
