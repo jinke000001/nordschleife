@@ -1,8 +1,8 @@
 # 第二期任务拆解（预备）—— 样式与性能
 
 > 来源：[prd-frontend-optimization.md](./prd-frontend-optimization.md) · 2026-08-30
-> 状态：T5 规格已定（拆分粒度经 Jinke 确认），T6 待第一期完成后实测再定细节。
-> 执行前提：第一期 T1–T4 全部完成并通过审核，且 `git status` 干净。
+> 状态：T5、T6 规格均已定稿（2026-08-30，拆分粒度与 og 方案经 Jinke 确认）。
+> 执行前提：第一期 T1–T4 全部完成并通过审核（✅ 已满足），且 `git status` 干净。
 
 ---
 
@@ -45,9 +45,25 @@ src/styles/
 
 ---
 
-## T6 首屏 LCP 优化（规格待补）
+## T6 首屏 LCP 优化
 
-第一期完成后先跑一次 Lighthouse 实测，拿到 LCP 元素和阻塞清单后再写本任务规格。预计涉及：首屏关键图 preload、`<img>` 宽高属性防 CLS、字体加载策略。
+**背景**：首页为首屏性能的代表页面。当前未做过 LCP 优化：无关键资源 preload、图片缺尺寸属性可能有 CLS。
+
+**步骤**：
+
+1. **先实测再动手**（本任务的前置交付物）：
+   ```bash
+   npm run build && npm run preview
+   npx lighthouse http://localhost:4173/ --preset=desktop --output=json --output-path=/tmp/lh-home.json
+   ```
+   从报告中提取：LCP 值与 LCP 元素、CLS 值与归因、阻塞渲染资源清单。把这三项写进 commit message 或 `project-workbench/t6-lighthouse-baseline.md`。
+2. **根据实测结果，按以下优先级修法**（只修报告确认的问题，不确认的不动）：
+   - LCP 元素是首页 hero 图 → 在 `index.html` 加 `<link rel="preload" as="image">` 指向该图（注意 Vite 构建后带 hash，用 `OptimizedImage` 的 glob 结果确认最终 URL，或在 index.html 用 `%VITE_%` 环境变量/构建插件注入；若实现复杂，改为在 HomePage 组件内用 `<link rel="preload">` 动态注入也可接受）；
+   - 图片导致 CLS → 给 `<img>` 补 `width`/`height` 或 CSS `aspect-ratio`；
+   - LCP 图加 `fetchpriority="high"`，非首屏图确认 `loading="lazy"` + `decoding="async"`（OptimizedImage 可能已有，核实即可）。
+3. **红线**：视觉与布局不得变化；只动 `index.html`、`HomePage.jsx`、`OptimizedImage.jsx` 三个文件，其他页面性能问题留到第三期。
+
+**验收**：改后再跑一次 Lighthouse（同命令），LCP ≤ 2.5s（桌面 preset）且 CLS 不劣化；基线与优化后两份报告都留存，连同 diff 交回审核。
 
 ---
 
@@ -55,4 +71,7 @@ src/styles/
 
 ```
 phase2-T5: split styles.css into base + components + per-page files
+phase2-T6: LCP optimization — <基线 LCP → 优化后 LCP>
 ```
+
+完成后把 `git log --stat`、拆分前后页面截图对比、Lighthouse 前后两份报告交回 Kimi 客户端审核。
