@@ -58,7 +58,7 @@ export default function BrandsPage() {
                       <small key={keyword}>{keyword}</small>
                     ))}
                   </div>
-                  <Link className="brand-card-link" to={`/brands/${brand.slug}`} aria-label={`查看 ${brand.name} 品牌故事`}>
+                  <Link className="brand-card-link" to={`/brands/${brand.slug}`} aria-label={`查看品牌故事：${brand.name}`}>
                     查看品牌故事
                   </Link>
                 </div>

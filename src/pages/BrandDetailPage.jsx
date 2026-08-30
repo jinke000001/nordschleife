@@ -66,6 +66,8 @@ export default function BrandDetailPage() {
                 className="brand-hero-logo"
                 src={`/logos/${brand.logoBasename}.svg`}
                 alt={brand.name}
+                width="24"
+                height="24"
               />
             </figure>
           )}

@@ -32,6 +32,12 @@ npm run preview
 
 `index.html` 内含 Open Graph / Twitter Card / canonical / favicon / theme-color 元信息。og 分享图为 `public/og-image.jpg`，修改文案后运行 `npm run og` 重新生成（依赖 Playwright，模板在 `scripts/og-image.html`）。注意：本站是 SPA，og 标签为全站统一的静态标签，无法按路由区分——社交分享任何子页面都会显示同一张卡片。
 
+## 性能数据（2026-08-30 三期优化后）
+
+- 构建耗时 ~1.5s（Vite 7，按路由代码分割 + 数据懒加载）
+- 线上（Netlify）Lighthouse：Performance 99、SEO 100、CLS 0
+- 本地全站审计明细见 `project-workbench/t8-audit-report.md`
+
 ## 主要文件
 
 - `src/data/corner-records/`：弯角数据目录（每个弯角一个文件），由 `src/data/corner-records/index.js` 汇总；`src/data/corners.js` 在其上组合图片资源，补真实资料主要改这里。
@@ -45,12 +51,12 @@ npm run preview
 - `src/pages/CornerDetailPage.jsx`：弯角详情页。
 - `src/pages/BrandsPage.jsx`、`src/pages/BrandDetailPage.jsx`：品牌列表与详情。
 - `src/pages/LapTimesPage.jsx`：圈速榜。
-- `src/styles.css`：整体视觉和响应式样式。
+- `src/styles/`：样式目录（base + components + 按页面拆分），整体视觉和响应式样式。
 
 ## 开发约定
 
 - 内容数据改动只动 `src/data/`（各记录目录与其 `index.js`），不要在组件里硬编码文案数据。
-- 样式改动前先读 `src/styles.css` 里的现有变量与类名，优先复用，不新增重复变量。
+- 样式改动前先读 `src/styles/` 里的现有变量与类名，优先复用，不新增重复变量。
 - 新页面需在 `src/App.jsx` 注册路由，并保持 `React.lazy` 懒加载方式不变。
 - og 分享图改文案后运行 `npm run og` 重新生成 `public/og-image.jpg`。
 - commit 前先跑 `npm run build`，确认构建通过再提交。

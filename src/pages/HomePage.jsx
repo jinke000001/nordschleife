@@ -153,7 +153,7 @@ export default function HomePage() {
         <div className="brand-badge-grid">
           {brands.map((brand) => (
             <Link className="brand-badge" to={`/brands/${brand.slug}`} key={brand.slug} aria-label={brand.name}>
-              <img className="brand-badge-logo" src={`/logos/${brand.logoBasename}.svg`} alt={brand.name} />
+              <img className="brand-badge-logo" src={`/logos/${brand.logoBasename}.svg`} alt={brand.name} width="24" height="24" />
             </Link>
           ))}
         </div>

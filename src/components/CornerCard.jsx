@@ -1,23 +1,29 @@
 import { ArrowUpRight, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-export default function CornerCard({ corner, compact = false }) {
+export default function CornerCard({ corner, compact = false, priority = false }) {
   const hasPhoto = corner.media?.type === 'photo';
   const mediaImage = corner.media?.image;
 
   if (hasPhoto && mediaImage) {
     return (
       <article className={compact ? 'corner-card corner-card-photo compact' : 'corner-card corner-card-photo'}>
-        <img className="corner-card-bg" src={mediaImage} alt={corner.name} loading="lazy" />
+        <img
+          className="corner-card-bg"
+          src={mediaImage}
+          alt={corner.name}
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : undefined}
+        />
         <div className="corner-card-photo-overlay" />
         <div className="corner-card-photo-content">
           <div className="card-kicker">
             <span>#{String(corner.order).padStart(2, '0')}</span>
             <span>{corner.section}</span>
           </div>
-          <h3>
+          <h2>
             <Link to={`/corners/${corner.slug}`}>{corner.name}</Link>
-          </h3>
+          </h2>
           <p className="corner-cn">{corner.chineseName} · {corner.explanation}</p>
           {!compact && <p className="corner-story">{corner.story}</p>}
           <Link className="text-link corner-card-photo-link" to={`/corners/${corner.slug}`}>
@@ -34,9 +40,9 @@ export default function CornerCard({ corner, compact = false }) {
         <span>#{String(corner.order).padStart(2, '0')}</span>
         <span>{corner.section}</span>
       </div>
-      <h3>
+      <h2>
         <Link to={`/corners/${corner.slug}`}>{corner.name}</Link>
-      </h3>
+      </h2>
       <p className="corner-cn">{corner.chineseName} · {corner.explanation}</p>
       {!compact && (
         <>

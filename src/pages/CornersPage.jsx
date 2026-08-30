@@ -56,8 +56,8 @@ export default function CornersPage() {
       </div>
 
       <div className="corner-list">
-        {filteredCorners.map((corner) => (
-          <CornerCard key={corner.slug} corner={corner} />
+        {filteredCorners.map((corner, index) => (
+          <CornerCard key={corner.slug} corner={corner} priority={index === 0} />
         ))}
       </div>
     </section>

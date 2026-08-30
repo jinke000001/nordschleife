@@ -273,9 +273,10 @@ main::before {
   }
 }
 
-/* Suspense fallback loading shimmer */
+/* Suspense fallback loading shimmer. 100vh keeps the footer below the fold
+   while chunks load, so it doesn't shift visibly when content arrives. */
 .page-fallback {
-  min-height: 60vh;
+  min-height: 100vh;
   position: relative;
   overflow: hidden;
 }

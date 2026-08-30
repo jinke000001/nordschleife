@@ -1472,7 +1472,7 @@
   transition: box-shadow 0.4s ease, border-color 0.4s ease, transform 0.4s ease;
 }
 
-.corner-card h3,
+.corner-card h2,
 .brand-card h3 {
   margin: 12px 0 8px;
   font-size: 1.25rem;
@@ -1633,13 +1633,13 @@
   color: var(--red);
 }
 
-.corner-card h3 {
+.corner-card h2 {
   margin-top: 18px;
   font-size: clamp(1.35rem, 2.4vw, 2rem);
   letter-spacing: 0.02em;
 }
 
-.corner-card h3 a:hover {
+.corner-card h2 a:hover {
   color: white;
 }
 
@@ -2237,7 +2237,7 @@
 }
 
 /* ── Nav groups ──────────────────── */
-.footer-nav-group h3 {
+.footer-nav-group h2 {
   margin: 0 0 16px;
   font-size: 0.82rem;
   font-weight: 400;
@@ -2428,7 +2428,7 @@
     height: 44px;
   }
 
-  .corner-card h3 a,
+  .corner-card h2 a,
   .corner-card .text-link {
     display: inline-flex;
     align-items: center;

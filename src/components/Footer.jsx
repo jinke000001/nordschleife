@@ -27,7 +27,7 @@ export default function Footer() {
       <div className="footer-inner">
         {/* ── Brand Column ──────────────────────────── */}
         <div className="footer-brand">
-          <Link className="footer-brand-mark" to="/" aria-label="返回首页">
+          <Link className="footer-brand-mark" to="/">
             <span className="footer-brand-icon">
               <Gauge size={18} />
             </span>
@@ -58,7 +58,7 @@ export default function Footer() {
         {/* ── Nav Column ──────────────────────────── */}
         {navGroups.map((group) => (
           <div className="footer-nav-group" key={group.title}>
-            <h3>{group.title}</h3>
+            <h2>{group.title}</h2>
             <ul>
               {group.links.map((link) => (
                 <li key={link.to}>
@@ -74,7 +74,7 @@ export default function Footer() {
 
         {/* ── Sources Column ──────────────────────── */}
         <div className="footer-nav-group">
-          <h3>数据来源</h3>
+          <h2>数据来源</h2>
           <ul>
             {dataSources.map((source) => (
               <li key={source.label}>

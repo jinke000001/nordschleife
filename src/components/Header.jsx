@@ -84,7 +84,7 @@ export default function Header() {
 
   return (
     <header className="site-header">
-      <Link className="brand-mark" to="/" aria-label="返回首页">
+      <Link className="brand-mark" to="/">
         <span className="brand-icon">
           <Gauge size={20} />
         </span>
