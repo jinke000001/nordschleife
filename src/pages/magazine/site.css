@@ -1,0 +1,74 @@
+.mg-site { --mg-serif: 'Songti SC', 'Noto Serif CJK SC', SimSun, serif; --mg-ink: #202823; --mg-muted: #5d665e; --mg-rule: #d6dbd3; }
+.mg-site *, .mg-site *::before, .mg-site *::after { box-sizing: border-box; }
+.mg-site main { contain: none; min-height: min(65svh, 940px); outline: none; }
+.mg-site input, .mg-site select { font: inherit; color: #202823; color-scheme: light; }
+.mg-site input:focus-visible, .mg-site select:focus-visible, .mg-site summary:focus-visible { outline: 2px solid #bf3327; outline-offset: 4px; }
+.mg-header-note { margin-left: 24px; font-size: 9px; line-height: 1.65; letter-spacing: .13em; color: var(--ed-muted); }
+.mg-footer { margin-top: 48px; }
+.mg-footer p + p { margin-top: 7px; }
+.mg-footer > span { line-height: 1.8; letter-spacing: .08em; text-align: right; }
+.mg-loading { min-height: min(65vh, 940px); display: grid; place-items: center; font-size: 14px; color: var(--ed-muted); }
+.mg-not-found { margin: 80px auto 140px; width: min(800px, 90%); }
+.mg-not-found h1 { font: 500 clamp(36px, 5vw, 60px)/1.4 var(--mg-serif); margin: 24px 0; }
+.mg-not-found p { color: var(--ed-muted); line-height: 1.9; }
+.mg-home-map { margin: 96px 4.5% 0; display: grid; grid-template-columns: minmax(220px, .65fr) minmax(0, 1.35fr); gap: 6%; align-items: center; }
+.mg-home-map-copy h2 { font: 500 clamp(30px, 3vw, 44px)/1.45 var(--mg-serif); margin: 24px 0; }
+.mg-home-map-copy > p:not(.ed-kicker) { font-size: 15px; line-height: 1.95; color: var(--ed-muted); }
+.mg-home-map-copy > span { display: block; color: var(--ed-muted); font-size: 11px; line-height: 1.8; margin-top: 24px; }
+.mg-home-map-panel { min-width: 0; padding: 24px; background: #e9ede6; }
+.mg-home-map .track-map { border: 0; box-shadow: none; background: transparent; padding: 0; border-radius: 0; }
+.mg-home-map .map-stage { background: transparent; border: 0; box-shadow: none; padding: 0; min-height: 0; border-radius: 0; }
+.mg-home-map .map-grid { opacity: .12; }
+.mg-home-map .official-map-frame { filter: none; }
+.mg-home-map .flow-track-shadow, .mg-home-map .flow-track-progress-glow-outer, .mg-home-map .flow-track-progress-glow-inner, .mg-home-map .flow-track-segment-glow-outer, .mg-home-map .flow-track-segment-glow-inner { display: none; }
+.mg-home-map .flow-track-base-wide { stroke: #c4ccbe; }
+.mg-home-map .flow-track-base { stroke: #6e7c69; }
+.mg-home-map .flow-track-progress { stroke: #6e7c69; filter: none; }
+.mg-home-map .flow-track-segment { stroke: #bf3327; filter: none; }
+.mg-home-map .track-label { color: #4b5947; text-shadow: none; font-size: clamp(12px, .95vw, 15px); }
+.mg-home-map .track-label.l { margin-left: 10px; }
+.mg-home-map .track-label.r { margin-left: -8px; }
+.mg-home-map .track-label.has-page { color: #202823; }
+.mg-home-map .track-label.active, .mg-home-map .track-label:hover, .mg-home-map .track-label:focus-visible { color: #bf3327; text-shadow: none; background: transparent; box-shadow: none; font-size: clamp(12px, .95vw, 15px); }
+.mg-home-map .track-label:focus-visible { text-decoration: underline; text-underline-offset: 4px; }
+.mg-home-map .map-active-callout { color: #202823; background: #fafbf8; border: 1px solid #c4ccbe; box-shadow: none; border-radius: 0; }
+.mg-home-map .map-language-toggle { background: #fafbf8; border-color: #c4ccbe; border-radius: 0; }
+.mg-home-map .map-language-toggle button { color: #53634c; border-radius: 0; }
+.mg-home-map .map-language-toggle button.active { color: #fff; background: #344b35; box-shadow: none; }
+.mg-home-map .mobile-map-guide article { background: #fafbf8; border-color: #c4ccbe; color: #202823; box-shadow: none; border-radius: 0; }
+.mg-home-map .mobile-map-guide article p { color: #5d665e; }
+.mg-home-map .mobile-map-guide article button { color: #fff; background: #344b35; border: 0; border-radius: 0; }
+.mg-home-map .mobile-map-tabs button { background: transparent; color: #455740; border-color: #c4ccbe; border-radius: 0; }
+.mg-home-map .mobile-map-tabs button.active { border-color: #bf3327; color: #bf3327; }
+.mg-home-map .elevation-ribbon { color: #384435; }
+@media (min-width: 1600px) { .mg-site { max-width: 1920px; margin-inline: auto; } }
+@media (max-width: 1000px) { .mg-header-note { display: none; } .mg-home-map { grid-template-columns: 1fr; gap: 32px; } .mg-home-map-copy { max-width: 580px; } }
+@media (max-width: 760px) {
+  .mg-header { height: auto; min-height: 128px; flex-wrap: wrap; gap: 12px; padding: 22px 6% 10px; }
+  .mg-header .ed-wordmark { font-size: 23px; }
+  .mg-header nav { width: 100%; justify-content: space-between; gap: 12px; margin: 0; }
+  .mg-header nav a { font-size: 13px; min-height: 44px; white-space: nowrap; }
+  .mg-home-map { margin: 56px 6% 0; }
+  .mg-home-map-panel { padding: 16px 10px; }
+  .mg-footer { padding: 28px 6%; align-items: flex-start; gap: 20px; }
+  .mg-footer > span { text-align: left; margin-left: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .mg-site *, .mg-site *::before, .mg-site *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+/* The existing circuit and elevation views share the paper palette. */
+.mg-home-map .official-map-frame { background: transparent; box-shadow: none; border-radius: 0; }
+.mg-home-map .official-map-frame::before { display: none; }
+.mg-home-map .map-active-callout strong { color: #202823; }
+.mg-home-map .map-active-callout span { color: #bf3327; }
+.mg-home-map .elevation-ribbon { background: transparent; box-shadow: none; border: 0; border-top: 1px solid #c4ccbe; border-radius: 0; padding: 24px 0 0; }
+.mg-home-map .elevation-title { color: #202823; font-family: var(--mg-serif); font-weight: 500; }
+.mg-home-map .elevation-stats, .mg-home-map .elevation-source-note, .mg-home-map .elevation-footer-ticks { color: #5d665e; }
+.mg-home-map .elevation-badge { color: #a62b20; }
+.mg-home-map .elevation-stats .stat-highlight { color: #a62b20; background: transparent; }
+.mg-home-map .elevation-axis-text, .mg-home-map .elevation-marker-label { fill: #5d665e; }
+.mg-home-map .elevation-marker.active .elevation-marker-label { fill: #a62b20; text-shadow: none; }
+.mg-home-map .elevation-hud-callout { background: #fafbf8; border: 1px solid #c4ccbe; box-shadow: none; border-radius: 0; backdrop-filter: none; }
+.mg-home-map .hud-corner-title strong, .mg-home-map .hud-val { color: #202823; }
+.mg-home-map .hud-corner-title small, .mg-home-map .hud-label, .mg-home-map .hud-note { color: #5d665e; }
+.mg-home-map .hud-val.highlight { color: #a62b20; }
+
+.return-to-guide { position: fixed; z-index: 40; bottom: 24px; right: 24px; padding: 13px 20px; background: #fafbf8; border: 1px solid #b9c2b2; color: #202823; font-size: 13px; box-shadow: 0 3px 14px #20282310; }
