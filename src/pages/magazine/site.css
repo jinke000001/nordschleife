@@ -1,13 +1,17 @@
 .mg-site { --mg-serif: 'Songti SC', 'Noto Serif CJK SC', SimSun, serif; --mg-ink: #202823; --mg-muted: #5d665e; --mg-rule: #d6dbd3; }
 .mg-site *, .mg-site *::before, .mg-site *::after { box-sizing: border-box; }
-.mg-site main { contain: none; min-height: min(65svh, 940px); outline: none; }
+/* Short pages keep the footer at/below the fold and aligned with the Suspense
+   placeholder height, so the content swap never visibly moves the footer. */
+.mg-site main { contain: none; min-height: min(100svh, 940px); outline: none; display: flow-root; }
 .mg-site input, .mg-site select { font: inherit; color: #202823; color-scheme: light; }
 .mg-site input:focus-visible, .mg-site select:focus-visible, .mg-site summary:focus-visible { outline: 2px solid #bf3327; outline-offset: 4px; }
 .mg-header-note { margin-left: 24px; font-size: 9px; line-height: 1.65; letter-spacing: .13em; color: var(--ed-muted); }
 .mg-footer { margin-top: 48px; }
 .mg-footer p + p { margin-top: 7px; }
 .mg-footer > span { line-height: 1.8; letter-spacing: .08em; text-align: right; }
-.mg-loading { min-height: min(65vh, 940px); display: grid; place-items: center; font-size: 14px; color: var(--ed-muted); }
+/* Keep the loading placeholder tall enough that the footer starts below the
+   fold; otherwise the content swap visibly shoves the footer (CLS). */
+.mg-loading { min-height: min(100svh, 940px); display: grid; place-items: center; font-size: 14px; color: var(--ed-muted); }
 .mg-not-found { margin: 80px auto 140px; width: min(800px, 90%); }
 .mg-not-found h1 { font: 500 clamp(36px, 5vw, 60px)/1.4 var(--mg-serif); margin: 24px 0; }
 .mg-not-found p { color: var(--ed-muted); line-height: 1.9; }

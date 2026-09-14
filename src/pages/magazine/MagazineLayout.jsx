@@ -10,7 +10,6 @@ export default function MagazineLayout() {
   const chipRef = useRef(null);
   useLayoutEffect(() => {
     document.body.classList.add('editorial-preview-active');
-    document.documentElement.classList.remove('boot-home');
     return () => document.body.classList.remove('editorial-preview-active');
   }, []);
   // The floating return chip must never cover page controls: hide it while its
@@ -53,7 +52,7 @@ export default function MagazineLayout() {
   return <div className="ed-site mg-site">
     <a className="ed-skip" href="#ed-content">跳到正文</a>
     <header className="ed-header mg-header">
-      <Link className="ed-wordmark" to="/" aria-label="纽北中文指南首页">NORDSCHLEIFE<span>纽博格林北环中文指南</span></Link>
+      <Link className="ed-wordmark" to="/">NORDSCHLEIFE<span>纽博格林北环中文指南</span></Link>
       <nav aria-label="主导航">
         <NavLink to="/" end>认识纽北</NavLink>
         <NavLink to="/corners">弯道档案</NavLink>

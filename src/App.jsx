@@ -1,62 +1,32 @@
-import { lazy, Suspense, useLayoutEffect } from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
-import Header from './components/Header.jsx';
-import Footer from './components/Footer.jsx';
-import ReadingProgress from './components/ReadingProgress.jsx';
-import TopLoadingBar from './components/TopLoadingBar.jsx';
+import { lazy } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import MagazineLayout from './pages/magazine/MagazineLayout.jsx';
+// 首页不做路由级懒加载：封面是 LCP 元素，少一次 chunk 往返，LCP 更早。
+import Home from './pages/editorial/EditorialHome.jsx';
 
-const HomePage = lazy(() => import('./pages/HomePage.jsx'));
-const CornersPage = lazy(() => import('./pages/CornersPage.jsx'));
-const CornerDetailPage = lazy(() => import('./pages/CornerDetailPage.jsx'));
-const BrandsPage = lazy(() => import('./pages/BrandsPage.jsx'));
-const BrandDetailPage = lazy(() => import('./pages/BrandDetailPage.jsx'));
-const ModelDetailPage = lazy(() => import('./pages/ModelDetailPage.jsx'));
-const LapTimesPage = lazy(() => import('./pages/LapTimesPage.jsx'));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage.jsx'));
+const Karussell = lazy(() => import('./pages/editorial/EditorialKarussell.jsx'));
+const CornerIndex = lazy(() => import('./pages/magazine/CornerIndex.jsx'));
+const CornerStory = lazy(() => import('./pages/magazine/CornerStory.jsx'));
+const BrandsIndex = lazy(() => import('./pages/magazine/BrandsIndex.jsx'));
+const BrandStory = lazy(() => import('./pages/magazine/BrandStory.jsx'));
+const ModelStory = lazy(() => import('./pages/magazine/ModelStory.jsx'));
+const LapArchive = lazy(() => import('./pages/magazine/LapArchive.jsx'));
+const NotFound = lazy(() => import('./pages/magazine/NotFound.jsx'));
 
 export default function App() {
-  const location = useLocation();
-
-  return (
-    <div className="app-shell">
-      <TopLoadingBar />
-      <ReadingProgress />
-      <ScrollToTop />
-      <Header />
-      <main>
-        <Suspense fallback={<PageFallback />}>
-          <div key={location.pathname} className="page-transition-wrapper">
-            <Routes location={location}>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/corners" element={<CornersPage />} />
-              <Route path="/corners/:slug" element={<CornerDetailPage />} />
-              <Route path="/brands" element={<BrandsPage />} />
-              <Route path="/brands/:brandSlug/:modelSlug" element={<ModelDetailPage />} />
-              <Route path="/brands/:slug" element={<BrandDetailPage />} />
-              <Route path="/lap-times" element={<LapTimesPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </div>
-        </Suspense>
-      </main>
-      <Footer />
-    </div>
-  );
-}
-
-function PageFallback() {
-  return <div className="page-fallback" />;
-}
-
-function ScrollToTop() {
-  const { hash, key, pathname, search } = useLocation();
-
-  useLayoutEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-    requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-    });
-  }, [hash, key, pathname, search]);
-
-  return null;
+  return <Routes>
+    <Route element={<MagazineLayout />}>
+      <Route path="/" element={<Home />} />
+      <Route path="/corners" element={<CornerIndex />} />
+      <Route path="/corners/:slug" element={<CornerStory />} />
+      <Route path="/experience/karussell" element={<Karussell />} />
+      <Route path="/brands" element={<BrandsIndex />} />
+      <Route path="/brands/:slug" element={<BrandStory />} />
+      <Route path="/brands/:brandSlug/:modelSlug" element={<ModelStory />} />
+      <Route path="/lap-times" element={<LapArchive />} />
+      <Route path="/preview/editorial" element={<Navigate to="/" replace />} />
+      <Route path="/preview/editorial/karussell" element={<Navigate to="/experience/karussell" replace />} />
+      <Route path="*" element={<NotFound />} />
+    </Route>
+  </Routes>;
 }
