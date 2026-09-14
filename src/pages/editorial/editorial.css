@@ -150,7 +150,7 @@ body.editorial-preview-active { min-width: 0; background: #fafbf8; color: #20282
   .ed-cover-copy { padding: 35px 25px; width: 100%; }
   .ed-overline { font-size: 12px; }
   .ed-cover h1 { font-size: clamp(78px, 22vw, 110px); margin-top: 28px; }
-  .ed-cover-english { font-size: 30px; }
+  .ed-cover-english { font-size: 30px; margin-top: 26px !important; }
   .ed-cover-intro { font-size: 14px; margin-top: 28px !important; }
   .ed-cover-cta { margin-top: 25px; padding-inline: 17px; gap: 32px; }
   .ed-cover-scroll { right: 18px; top: 24px; width: 36px; height: 36px; }
