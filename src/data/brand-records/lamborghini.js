@@ -8,7 +8,7 @@ export default {
   "heroSourceHref": "https://commons.wikimedia.org/wiki/File:Lamborghini_Huracan_STO.jpg",
   "heroModel": "Huracan Performante / Aventador SVJ / Huracan STO / Huracan GT3 EVO2",
   "focus": "Lamborghini 进入北环时总带着舞台灯光：V10、V12、楔形姿态和主动空气动力都很张扬。但真正有趣的是，这些戏剧性必须在 20 公里山路上兑现成真实速度——Huracan Performante 的 6:52.01 和 Aventador SVJ 的 6:44.97，就是这份承诺的两张收据。",
-  "story": "当一台兰博基尼进入北环，观众往往先听见它，再看见它。它的故事适合从超跑如何把视觉冲击转化为真实速度切入：ALA 主动空气动力不是装饰，V12 不只属于海报，轻量化 STO 和 GT3 赛车 Huracan GT3 EVO2 则把这条路推向更极端的位置。",
+  "story": "当一台兰博基尼进入北环，观众往往先听见它，再看见它。它把视觉冲击转化为真实速度：ALA 主动空气动力不是装饰，V12 不只属于海报，轻量化 STO 和 GT3 赛车 Huracan GT3 EVO2 则把这条路推向更极端的位置。",
   "keywords": [
     "超跑",
     "主动空力",

@@ -1220,6 +1220,222 @@
   display: none;
 }
 
+/* ─────────────────────────────────────────
+   Track Elevation Ribbon (300m Vertical Relief)
+   ───────────────────────────────────────── */
+.elevation-ribbon {
+  margin-top: 24px;
+  padding: 24px 28px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(229, 35, 46, 0.08), transparent 65%),
+    linear-gradient(180deg, rgba(17, 21, 28, 0.95) 0%, rgba(11, 13, 17, 0.98) 100%);
+  border: 1px solid var(--asphalt-border);
+  border-radius: 10px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  position: relative;
+  overflow: visible;
+}
+
+.elevation-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.elevation-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  color: var(--red);
+  letter-spacing: 0.12em;
+  margin-bottom: 4px;
+}
+
+.elevation-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+
+.elevation-stats {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.74rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+.elevation-stats .divider {
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.elevation-stats .stat-highlight {
+  color: #fff;
+  font-weight: 700;
+  background: rgba(229, 35, 46, 0.18);
+  padding: 2px 8px;
+  border-radius: 4px;
+  border: 1px solid rgba(229, 35, 46, 0.3);
+}
+
+.elevation-stage {
+  position: relative;
+  width: 100%;
+  margin-top: 18px;
+}
+
+.elevation-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+  cursor: crosshair;
+}
+
+.elevation-axis-text {
+  font-size: 11px;
+  fill: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.05em;
+}
+
+.elevation-marker {
+  transition: opacity 0.2s ease;
+}
+
+.elevation-marker circle {
+  transition: r 0.2s ease, fill 0.2s ease;
+}
+
+.elevation-marker:hover circle {
+  r: 6;
+  fill: #fff;
+}
+
+.elevation-marker-label {
+  font-size: 10.5px;
+  fill: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}
+
+.elevation-marker.active .elevation-marker-label {
+  fill: #fff;
+  font-weight: 700;
+}
+
+.cursor-point {
+  filter: drop-shadow(0 0 6px var(--red));
+}
+
+.elevation-hud-callout {
+  position: absolute;
+  top: 10px;
+  z-index: 10;
+  min-width: 180px;
+  max-width: 260px;
+  padding: 10px 14px;
+  background: rgba(10, 12, 16, 0.94);
+  border: 1px solid rgba(229, 35, 46, 0.35);
+  border-radius: 6px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  pointer-events: none;
+  animation: hudAppear 0.2s ease-out;
+}
+
+@keyframes hudAppear {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hud-corner-title strong {
+  display: block;
+  color: #fff;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+}
+
+.hud-corner-title small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  margin-top: 1px;
+}
+
+.hud-data-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hud-label {
+  display: block;
+  font-size: 0.65rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+.hud-val {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 2px;
+}
+
+.hud-val.highlight {
+  color: var(--red);
+}
+
+.hud-note {
+  margin-top: 6px;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(229, 35, 46, 0.12);
+  padding: 3px 6px;
+  border-radius: 3px;
+}
+
+.elevation-footer-ticks {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 0.68rem;
+  color: rgba(165, 175, 189, 0.6);
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 760px) {
+  .elevation-ribbon {
+    padding: 18px 14px;
+  }
+  .elevation-marker-label {
+    display: none;
+  }
+  .elevation-stats {
+    font-size: 0.68rem;
+  }
+  .elevation-footer-ticks span:nth-child(2),
+  .elevation-footer-ticks span:nth-child(4) {
+    display: none;
+  }
+}
+
+
 .track-shadow {
   fill: none;
   stroke: rgba(0, 0, 0, 0.55);
@@ -1447,9 +1663,11 @@
 .spec-card h2,
 .brand-manifesto h2 {
   margin: 0;
-  font-size: clamp(1.75rem, 3.5vw, 3rem);
-  line-height: 1.08;
-  letter-spacing: 0.03em;
+  font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  text-wrap: balance;
+  word-break: keep-all;
 }
 
 .section-header > p:not(.eyebrow) {
@@ -2384,6 +2602,42 @@
   box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(229, 35, 46, 0.2);
 }
 
+/* ─────────────────────────────────────────
+   Magazine Exhibition Cards & Micro-details
+   ───────────────────────────────────────── */
+.spotlight-card {
+  position: relative;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(21, 25, 34, 0.9) 0%, rgba(14, 17, 22, 0.95) 100%);
+  border: 1px solid var(--asphalt-border);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spotlight-card:hover {
+  border-color: rgba(229, 35, 46, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), 0 0 30px rgba(229, 35, 46, 0.1);
+}
+
+.telemetry-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+}
+
+.telemetry-chip.accent {
+  color: #fff;
+  border-color: rgba(229, 35, 46, 0.35);
+  background: rgba(229, 35, 46, 0.1);
+}
+
 
 @media (max-width: 980px) {
   .desktop-nav {
@@ -2719,3 +2973,6 @@
     text-align: left;
   }
 }
+
+.elevation-source-note { font-size: .75rem; line-height: 1.8; color: var(--muted); margin: 0 0 16px; }
+.elevation-source-note a { margin-left: .5em; text-decoration: underline; }

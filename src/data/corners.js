@@ -76,7 +76,7 @@ const cornerPhotoLibrary = {
   karussell: {
     image: karussellImage,
     basename: 'karussell-wikimedia-1800',
-    credit: 'Karussell.jpg · Wikimedia Commons · CC0',
+    credit: 'Karussell.jpg · Hejnjahns · 2018-01-24 · Wikimedia Commons · CC0 1.0',
     sourceHref: 'https://commons.wikimedia.org/wiki/File:Karussell.jpg'
   },
   'hohe-acht': {
@@ -198,7 +198,7 @@ function createReadingFocus(corner) {
   }
 
   if (tagSet.has('内倾') || tagSet.has('水泥槽')) {
-    return '赛道结构会短暂接管车辆，进槽与出槽姿态决定这段老派质感是否顺畅。';
+    return '观察混凝土内槽与外侧路面的高度关系，以及入口和出口的过渡。';
   }
 
   if (tagSet.has('观众区') || tagSet.has('视频名场面')) {
@@ -224,7 +224,7 @@ export const corners = cornerRecords.map((corner) => {
   return {
     ...normalizedCorner,
     media: createDefaultMedia(normalizedCorner),
-    resources: createDefaultResources(normalizedCorner)
+    resources: normalizedCorner.resources ?? createDefaultResources(normalizedCorner)
   };
 });
 

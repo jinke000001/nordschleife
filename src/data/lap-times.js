@@ -1,7 +1,7 @@
 /**
  * Nordschleife 北环圈速档案
  * 数据来源：厂商新闻稿、Wikipedia List of Nordschleife lap times
- * 最后更新：2026-05-04
+ * 原始档案：2026-05-04；首批来源复核：2026-09-12（见 lap-time-sources.js）
  */
 
 export const POWERTRAIN_TABS = [
@@ -21,7 +21,7 @@ export const lapTimes = [
     timeMs: 319546,
     year: 2018,
     driver: 'Timo Bernhard',
-    note: '北环历史绝对圈速纪录',
+    note: '2018 年绝对圈速纪录成绩',
     circuit: '20.832 km',
     isRecord: true,
     powerType: 'hybrid',
@@ -35,7 +35,7 @@ export const lapTimes = [
     timeMs: 365336,
     year: 2019,
     driver: 'Romain Dumas',
-    note: '电动原型赛车纪录',
+    note: '2019 年电动原型赛车纪录成绩',
     circuit: '20.832 km',
     powerType: 'electric',
     modelLink: { brand: 'volkswagen', model: 'id-r' },
@@ -86,7 +86,7 @@ export const lapTimes = [
     timeMs: 389090,
     year: 2024,
     driver: 'Maro Engel',
-    note: '量产车总纪录 · F1 衍生 Hypercar',
+    note: '2024 年量产车纪录成绩 · F1 衍生 Hypercar',
     circuit: '20.832 km',
     isRecord: true,
     powerType: 'hybrid',
@@ -112,8 +112,8 @@ export const lapTimes = [
     timeMs: 404970,
     year: 2018,
     driver: 'Marco Mapelli',
-    note: '官方量产车纪录 · V12 自然吸气旗舰',
-    circuit: '20.832 km',
+    note: '2018 年厂商公布成绩 · V12 自然吸气旗舰',
+    circuit: '20.6 km',
     powerType: 'petrol',
     modelLink: { brand: 'lamborghini', model: 'aventador-svj' },
   },
@@ -177,8 +177,8 @@ export const lapTimes = [
     timeMs: 412010,
     year: 2016,
     driver: 'Marco Mapelli',
-    note: '官方圈速纪录 · ALA 主动空力',
-    circuit: '20.832 km',
+    note: '2016 年厂商公布成绩 · ALA 主动空力',
+    circuit: '20.6 km',
     powerType: 'petrol',
     modelLink: { brand: 'lamborghini', model: 'huracan-performante' },
   },
@@ -311,11 +311,14 @@ export const lapTimes = [
   }
 ];
 
-export const getSortedTimes = (powerType = 'all', showPrototype = false) => {
+export const CIRCUIT_OPTIONS = ['20.832 km', '20.6 km'];
+
+export const getSortedTimes = (powerType = 'all', showPrototype = false, circuit = CIRCUIT_OPTIONS[0]) => {
+  const selectedCircuit = CIRCUIT_OPTIONS.includes(circuit) ? circuit : CIRCUIT_OPTIONS[0];
   let filtered = lapTimes.filter(t => {
     const powerMatch = powerType === 'all' || t.powerType === powerType;
     const protoCheck = showPrototype || t.category !== 'prototype';
-    return powerMatch && protoCheck;
+    return powerMatch && protoCheck && t.circuit === selectedCircuit;
   });
   return filtered.sort((a, b) => a.timeMs - b.timeMs);
 };

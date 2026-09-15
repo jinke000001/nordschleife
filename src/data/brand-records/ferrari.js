@@ -8,7 +8,7 @@ export default {
   "heroSourceHref": "https://commons.wikimedia.org/wiki/File:Ferrari_488_Pista.jpg",
   "heroModel": "458 Italia · 488 Pista · SF90 Stradale · 499P",
   "focus": "Ferrari 这一栏按电影感编辑页来读：黑色画布、白色主体、少量 Rosso Corsa。它不把北环当作唯一答案，而是用 458、488 Pista、SF90 和 499P 展示一套克制但锋利的速度语言。",
-  "story": "Ferrari 的品牌页不适合做成单纯圈速榜。更准确的方式是像一本暗色画册：先看自然吸气中置 V8 的纯度，再看赛道化涡轮的效率，然后进入混动旗舰和勒芒原型车。北环在这里不是审判者，而是把响应、空力、能量管理和耐力赛技术放到同一张地图上的参照物。",
+  "story": "沿着 Ferrari 的技术脉络，先看自然吸气中置 V8 的纯度，再看赛道化涡轮的效率，然后进入混动旗舰和勒芒原型车。北环在这里不是审判者，而是把响应、空力、能量管理和耐力赛技术放到同一张地图上的参照物。",
   "keywords": [
     "Rosso Corsa",
     "中置响应",

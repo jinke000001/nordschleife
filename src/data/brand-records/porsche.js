@@ -8,7 +8,7 @@ export default {
   "heroSourceHref": "https://commons.wikimedia.org/wiki/File:Porsche_911_992_GT3_RS_(77850).jpg",
   "heroModel": "956 / 935 / 919 Hybrid Evo / 911 GT3 RS",
   "focus": "Porsche 是最适合站在品牌陈列馆第一排的名字，不只是因为它快，而是因为它把厂队赛车的极限、公路 911 的传统和 Track Day 文化，都带进了北环这条森林长卷。",
-  "story": "它的纽北故事不是单个数字，而是一条从原型赛车、空气动力、混动系统到公路 911 的工程线索。这里适合讲“为什么一台车能在长距离里一直快”。",
+  "story": "它的纽北故事不是单个数字，而是一条从原型赛车、空气动力、混动系统到公路 911 的工程线索。沿着这条线索，可以理解一台车如何在长距离里持续保持速度。",
   "keywords": [
     "耐力赛",
     "下压力",
