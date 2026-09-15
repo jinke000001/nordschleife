@@ -9,7 +9,7 @@ try { lastGuide = JSON.parse(sessionStorage.getItem('nord-guide-position')); } c
 function capture(pathname) {
   const top = window.scrollY;
   const sections = [...document.querySelectorAll('[data-reading-position]')];
-  const section = sections.filter(node => node.getBoundingClientRect().top <= 80).at(-1);
+  const section = sections.filter(node => node.getClientRects().length > 0 && node.getBoundingClientRect().top <= 80).at(-1);
   const rect = section?.getBoundingClientRect();
   return { pathname, top, width: innerWidth, height: innerHeight, section: section?.id,
     progress: rect?.height ? -rect.top / rect.height : 0 };

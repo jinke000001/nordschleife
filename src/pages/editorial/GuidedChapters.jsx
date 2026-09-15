@@ -14,6 +14,14 @@ import useReadingSteps from './useReadingSteps.js';
 const referenceUrl = 'https://github.com/JJYing/Nurburgring-Map';
 const cornerImages = import.meta.glob('../../assets/corners/*.webp', { eager: true, query: '?url', import: 'default' });
 
+// Restore the reading layout before PagePosition restores its scroll offset.
+// Keep an in-memory copy too, matching PagePosition's storage fallback.
+let rememberedOpenGaps = [];
+try {
+  const saved = JSON.parse(sessionStorage.getItem('nord-guide-open-gaps'));
+  if (Array.isArray(saved)) rememberedOpenGaps = saved;
+} catch { /* Storage can be unavailable. */ }
+
 function CircuitStop({ label, index, step, compact = false }) {
   const record = label.slug ? getCornerBySlug(label.slug) : null;
   const media = record?.media;
@@ -36,9 +44,13 @@ export function CircuitReading() {
   // Steps carry data-label-index, so this is a trackLabels index even while gap rows are collapsed away.
   const step = Math.max(0, useReadingSteps(root, '[data-reading-step]', .2));
   const [manual, setManual] = useState(null);
-  const [openGaps, setOpenGaps] = useState(() => new Set());
-  useEffect(() => { setManual(null); }, [step]);
   const items = useMemo(() => buildCircuitItems(), []);
+  const [openGaps, setOpenGaps] = useState(() => new Set(rememberedOpenGaps.filter(key => items.some(item => item.type === 'gap' && item.key === key))));
+  useEffect(() => {
+    rememberedOpenGaps = [...openGaps];
+    try { sessionStorage.setItem('nord-guide-open-gaps', JSON.stringify(rememberedOpenGaps)); } catch { /* Keep in-memory restoration. */ }
+  }, [openGaps]);
+  useEffect(() => { setManual(null); }, [step]);
   const current = manual?.step === step ? manual.label : trackLabels[step];
   const currentIndex = trackLabels.indexOf(current);
   const jumpTo = label => {
