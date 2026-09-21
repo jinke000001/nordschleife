@@ -35,6 +35,8 @@
 .mg-corner-empty p { color: var(--ed-muted); margin: 20px 0; line-height: 1.8; }
 .mg-corner-empty button { border: 0; border-bottom: 1px solid #202823; background: none; color: #202823; padding: 12px 0; }
 .mg-corner-index-note { margin-top: 48px !important; padding-top: 20px; border-top: 1px solid var(--ed-rule); color: var(--ed-muted); font-size: 11px; line-height: 1.8; }
+/* visual-fix-3 T2: scope note explaining the 43 names vs 17 archives split. */
+.mg-corner-scope a { text-decoration: underline; text-underline-offset: 3px; }
 .mg-corner-story { max-width: 1600px; margin: auto; }
 .mg-corner-story-header { margin: 20px 6% 40px; }
 .mg-corner-story-heading { display: grid; grid-template-columns: 1.4fr 1fr; gap: 8%; align-items: end; margin-top: 28px; }
@@ -87,7 +89,8 @@
 @media (max-width: 760px) {
   .mg-corners { margin-top: 32px; }
   .mg-corner-index-header { grid-template-columns: 1fr; gap: 24px; padding-bottom: 32px; }
-  .mg-corner-index-header > div:last-child { display: flex; gap: 24px; align-items: center; }
+  .mg-corner-index-header > div:last-child { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; }
+  .mg-corner-index-header .mg-corner-scope { flex-basis: 100%; }
   .mg-corner-count { font-size: 44px; flex-direction: column; gap: 8px; }
   .mg-corner-count small { white-space: nowrap; font-size: 10px; }
   .mg-corner-index-header > div:last-child > p { margin: 0; font-size: 13px; }

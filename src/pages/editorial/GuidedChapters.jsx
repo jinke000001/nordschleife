@@ -113,7 +113,7 @@ export function CircuitReading() {
     requestAnimationFrame(() => document.getElementById(expand ? `anchor-detail-${index}` : `anchor-open-${index}`)?.focus());
   };
   return <section className="guide-circuit circuit-complete mg-home-map" id="circuit" data-reading-position data-guide-chapter ref={root} aria-labelledby="mg-map-title">
-    <header className="guide-heading"><p className="ed-kicker">03 / 把弯道连成一圈</p><h2 id="mg-map-title">每一个名字，<br /><em>都是赛道的一部分。</em></h2><p>从刚才的旋转木马，回到完整的北环。<br />沿着右侧讲解慢慢读，也可以直接选择地图上的名字。</p></header>
+    <header className="guide-heading"><p className="ed-kicker">03 / 把弯道连成一圈</p><h2 id="mg-map-title">每一个名字，<br /><em>都是赛道的一部分。</em></h2><p>从刚才的旋转木马，回到完整的北环。<br />沿着右侧讲解慢慢读，也可以直接选择地图上的名字。</p><p className="guide-heading-note">这 43 个名字中，12 个弯带实拍照片与完整讲解，其中后 10 个默认收起为紧凑行、可随时展开；另有 5 个弯暂无实拍照片，只以紧凑行呈现。全部 17 篇完整弯道档案，见<Link to="/corners">弯道档案页</Link>。</p></header>
     <div className="guide-two-column">
       <div className="guide-sticky guide-map-visual">
         <div className="guide-visual-meta"><span>NORDSCHLEIFE / 20.832 KM</span><span>完整地图 · {trackLabels.length} 处地名</span></div>
