@@ -160,6 +160,15 @@
 .circuit-gap:not(.is-open) .circuit-gap-items { display: none; }
 .story-static .circuit-gap-summary { display: none; }
 .story-static .circuit-gap .circuit-gap-items { display: block; }
+/* visual-fix-3: anchors past the opening two fold into compact rows until expanded. */
+.circuit-anchor-toggle { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 6px 0; margin-top: 6px; background: none; border: 0; color: #a53728; font-size: 11px; cursor: pointer; }
+.circuit-anchor.is-open .circuit-anchor-row { display: none; }
+.circuit-anchor:not(.is-open) .circuit-anchor-detail { display: none; }
+.circuit-anchor-detail:focus { outline: none; }
+.circuit-anchor-fold { width: 100%; justify-content: flex-start; border-top: 1px solid #c4ccbe; margin-top: 20px; padding-top: 12px; }
+.story-static .circuit-anchor-row { display: none; }
+.story-static .circuit-anchor .circuit-anchor-detail { display: block; }
+.story-static .circuit-anchor-fold { display: none; }
 .circuit-source-footnote { margin-top: 28px; font-size: 10px; color: #66705f; }
 .circuit-source-footnote a { display: inline-flex; gap: 6px; align-items: center; min-height: 30px; color: inherit; }
 @media (prefers-reduced-motion: reduce) {
