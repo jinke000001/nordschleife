@@ -117,8 +117,8 @@ export function CircuitReading() {
     <div className="guide-two-column">
       <div className="guide-sticky guide-map-visual">
         <div className="guide-visual-meta"><span>NORDSCHLEIFE / 20.832 KM</span><span>完整地图 · {trackLabels.length} 处地名</span></div>
+        <label className="circuit-jump-select">选择赛道地名<select value={trackLabelKey(current)} onChange={event => jumpTo(trackLabels.find(label => trackLabelKey(label) === event.target.value))}>{trackLabels.map((label, index) => <option key={label.de} value={trackLabelKey(label)}>{String(index + 1).padStart(2, '0')} · {label.zh} / {label.de}</option>)}</select></label>
         <TrackMap activeSlug={trackLabelKey(current)} selectionOnly showElevation={false} onSelectCorner={selectOnMap} />
-        <label className="circuit-mobile-select">选择赛道地名<select value={trackLabelKey(current)} onChange={event => jumpTo(trackLabels.find(label => trackLabelKey(label) === event.target.value))}>{trackLabels.map((label, index) => <option key={label.de} value={trackLabelKey(label)}>{String(index + 1).padStart(2, '0')} · {label.zh} / {label.de}</option>)}</select></label>
         <div className="circuit-location"><span>{String(currentIndex + 1).padStart(2, '0')} / {trackLabels.length}</span><strong>{current.zh}</strong><small>{current.de}</small>{manual?.step === step && <button type="button" onClick={() => jumpTo(current)}>阅读此处讲解 <ArrowDown size={13} /></button>}</div>
         <div className="circuit-map-footer"><a href={referenceUrl} target="_blank" rel="noreferrer">地图 / JJYing · MIT <ArrowUpRight size={11} /></a><a href="#machines">继续看汽车 <ArrowDown size={13} /></a></div>
       </div>

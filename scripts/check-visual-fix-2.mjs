@@ -88,10 +88,10 @@ const check = (name, ok, detail = '') => { results.push({ name, ok, detail }); c
   const page = await browser.newPage({ viewport: { width: 390, height: 844 } });
   await page.goto(BASE + '/', { waitUntil: 'networkidle' });
   const mobile = await page.evaluate(() => ({
-    options: document.querySelectorAll('.circuit-mobile-select option').length
+    options: document.querySelectorAll('.circuit-jump-select option').length
   }));
   check('移动端下拉含全部 43 个地名', mobile.options === 43, `options=${mobile.options}`);
-  await page.locator('.circuit-mobile-select select').selectOption({ index: 12 });
+  await page.locator('.circuit-jump-select select').selectOption({ index: 12 });
   await page.waitForTimeout(600);
   const mJump = await page.evaluate(() => {
     const target = document.getElementById('track-stop-12');

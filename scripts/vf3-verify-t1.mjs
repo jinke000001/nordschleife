@@ -127,9 +127,9 @@ const staticAll = await mp.evaluate(() => ({
 }));
 check('移动端 story-static 回退：紧凑行隐藏、全部完整卡呈现', staticAll.isStatic && staticAll.rowsHidden && staticAll.detailsShown, JSON.stringify(staticAll));
 // 路径 3：移动端下拉 jumpTo
-await mp.evaluate(() => document.querySelector('.circuit-mobile-select').scrollIntoView({ block: 'center' }));
+await mp.evaluate(() => document.querySelector('.circuit-jump-select').scrollIntoView({ block: 'center' }));
 await mp.waitForTimeout(300);
-await mp.selectOption('.circuit-mobile-select select', 'karussell');
+await mp.selectOption('.circuit-jump-select select', 'karussell');
 await mp.waitForTimeout(600);
 const mobJump = await mp.evaluate(() => {
   const card = document.getElementById('track-stop-24');
