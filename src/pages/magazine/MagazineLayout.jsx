@@ -8,10 +8,24 @@ import PagePosition from './PagePosition.jsx';
 export default function MagazineLayout() {
   const { pathname } = useLocation();
   const chipRef = useRef(null);
+  const navRef = useRef(null);
   useLayoutEffect(() => {
     document.body.classList.add('editorial-preview-active');
     return () => document.body.classList.remove('editorial-preview-active');
   }, []);
+  // The single-row mobile nav can overflow on narrow screens: keep the active
+  // section scrolled into view when the route changes.
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav || !matchMedia('(max-width: 760px)').matches) return;
+    const current = nav.querySelector('[aria-current]');
+    if (!current || nav.scrollWidth <= nav.clientWidth) return;
+    // Center the active item with a programmatic scroll: scrollIntoView would
+    // move the sequential focus starting point and break Tab order.
+    const navBox = nav.getBoundingClientRect();
+    const itemBox = current.getBoundingClientRect();
+    nav.scrollLeft += (itemBox.left + itemBox.width / 2) - (navBox.left + navBox.width / 2);
+  }, [pathname]);
   // The floating return chip must never cover page controls: hide it while its
   // box intersects any interactive element inside <main>.
   useEffect(() => {
@@ -53,7 +67,7 @@ export default function MagazineLayout() {
     <a className="ed-skip" href="#ed-content">跳到正文</a>
     <header className="ed-header mg-header">
       <Link className="ed-wordmark" to="/">NORDSCHLEIFE<span>纽博格林北环中文指南</span></Link>
-      <nav aria-label="主导航">
+      <nav ref={navRef} aria-label="主导航">
         <NavLink to="/" end>认识纽北</NavLink>
         <NavLink to="/corners">弯道档案</NavLink>
         <NavLink to="/brands">品牌与车</NavLink>

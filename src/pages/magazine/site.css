@@ -48,9 +48,11 @@
 @media (min-width: 1600px) { .mg-site { max-width: 1920px; margin-inline: auto; } }
 @media (max-width: 1000px) { .mg-header-note { display: none; } .mg-home-map { grid-template-columns: 1fr; gap: 32px; } .mg-home-map-copy { max-width: 580px; } }
 @media (max-width: 760px) {
-  .mg-header { height: auto; min-height: 128px; flex-wrap: wrap; gap: 12px; padding: 22px 6% 10px; }
-  .mg-header .ed-wordmark { font-size: 23px; }
-  .mg-header nav { width: 100%; justify-content: space-between; gap: 12px; margin: 0; }
+  .mg-header { height: auto; min-height: 0; flex-wrap: wrap; gap: 2px 12px; padding: 8px 0 0; }
+  .mg-header .ed-wordmark { font-size: 20px; padding-left: 6%; }
+  .mg-header .ed-wordmark span { margin-top: 4px; }
+  .mg-header nav { width: 100%; justify-content: space-between; gap: 12px 22px; margin: 0; overflow-x: auto; scrollbar-width: none; padding: 0 6%; }
+  .mg-header nav::-webkit-scrollbar { display: none; }
   .mg-header nav a { font-size: 13px; min-height: 44px; white-space: nowrap; }
   .mg-home-map { margin: 56px 6% 0; }
   .mg-home-map-panel { padding: 16px 10px; }
